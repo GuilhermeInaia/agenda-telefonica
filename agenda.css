@@ -1,0 +1,6 @@
+.brasil{
+    display:flex; 
+    justify-content: right; 
+    height: 5px;
+    margin-top: 5px;
+}
