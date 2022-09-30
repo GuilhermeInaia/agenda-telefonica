@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="agenda.css">
 </head>
+
 <body class="container text-dark bg-success shadow">
     <div class="brasil">
         <img src="logo-brasil.png" class="rounded float-end" style="height: 60px;" alt="">
@@ -18,7 +19,7 @@
     <hr class="mt-1">
 
     <div class="row bg-warning mt-1">
-        <section class="col-4 offset-4" >
+        <section class="row" >
                 <form >
                     <h1 class="text-center ">Criar Contato</h1>
                     <hr>
@@ -41,10 +42,10 @@
                     <select onchange="buscarCidade()" id="states" class="mb-2"><option value="">--Selecione--</option></select>
 
                     <label for="nome">Cidade:</label>
-                    <select onchange="buscarEstado()" id="city"class="mb-2"><option value="">--Selecione--</option></select>
+                    <select onchange="buscarBairro()" id="city" class="mb-2"><option value="">--Selecione--</option></select>
 
                     <label for="nome">Bairro:</label>
-                    <select id="district"class="mb-2"><option value="">--Selecione--</option></select>
+                    <select id="district" class="mb-2"><option>--Selecione--</option></select>
 
 
                     <div class="mb-2">

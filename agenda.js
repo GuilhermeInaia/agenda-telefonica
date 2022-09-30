@@ -40,18 +40,16 @@ fetch('https://servicodados.ibge.gov.br/api/v1/localidades/regioes')
         });
     }
 
-    function buscarBairro(){
-        let id_bairro = document.getElementById('district').value
-        fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/municipios/${id_bairro}/subdistritos`)
+    function buscarBairro() {
+        let id_bairro = document.getElementById('city').value 
+        fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/microrregioes/${id_bairro}/subdistritos`) 
         .then((resposta) => resposta.json())
         .then((bairro) => {
-                document.getElementById('district').innerHTML = " "
-                bairro.forEach((cadaBairro) => {
-                    document.getElementById('district').innerHTML += `
-                    <option value="${cadaBairro.id}">${cadaBairro.nome}</option>
-                    `;
-
-             });
-        
+            document.getElementById('district').innerHTML = " "
+            bairro.forEach((cadaBairro) => {
+                document.getElementById('district').innerHTML += `
+                <option value="${cadaBairro.id}">${cadaBairro.nome}</option>
+                `;
+            });
         });
     }
