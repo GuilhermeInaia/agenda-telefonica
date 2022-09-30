@@ -11,55 +11,66 @@
     <link rel="stylesheet" href="agenda.css">
 </head>
 
-<body class="container text-dark bg-success shadow">
+<body class="container text-dark shadow">
     <div class="brasil">
-        <img src="logo-brasil.png" class="rounded float-end" style="height: 60px;" alt="">
+        <img src="logo-brasil.png" class="rounded float-end" style="height: 90px;" alt="">
     </div>
-    <h1 class="text-center mt-1">Agenda Telefônica do Brasil</h1>
-    <hr class="mt-1">
+    <h1 class="text-center mt-4">Agenda Telefônica</h1>
+    <hr class="mt-4">
 
-    <div class="row bg-warning mt-1">
-        <section class="row" >
-                <form >
-                    <h1 class="text-center ">Criar Contato</h1>
-                    <hr>
-                    <label for="nome">Nome Completo</label>
-                    <input type="text" id="nome"  placeholder="Nome Completo" class="form-control mb-2">
     
-                    <label for="nome">Telefone</label>
-                    <input type="text" id="telefone" placeholder="(  )     -    " class="form-control mb-2">
-    
-                    <label for="nome">Email</label>
-                    <input type="text" id="email" placeholder="Email" class="form-control mb-2">
-    
-                    <label for="nome">Data de Nascimento</label>
-                    <input type="date" id="d_nascimento" placeholder="Data de Nascimento" class="form-control mb-2">
-
-                    <label for="nome">Região:</label>
-                    <select onchange="buscarEstado()" id="region" class="mb-2"><option value="">--Selecione--</option></select>
-                
-                    <label for="nome">Estado:</label>
-                    <select onchange="buscarCidade()" id="states" class="mb-2"><option value="">--Selecione--</option></select>
-
-                    <label for="nome">Cidade:</label>
-                    <select onchange="buscarBairro()" id="city" class="mb-2"><option value="">--Selecione--</option></select>
-
-                    <label for="nome">Bairro:</label>
-                    <select id="district" class="mb-2"><option>--Selecione--</option></select>
-
-
-                    <div class="mb-2">
-                        <label for="validationTextarea" class="form-label">Informações Adicionais</label>
-                        <textarea class="form-control mb-2" id="validationTextarea" placeholder="Informe aqui." required></textarea>
-                        <div class="invalid-feedback">
-                          Please enter a message in the textarea.
-                        </div>
+    <div class="col bg-warning mt-1">
+        
+        <table class="table table-striped table-hover">
+            
+            <!-- <h2 class="text-center">Criar Contato</h2>
+            <hr> -->
+          
+          <thead class="text-center">
+              <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Telefone</th>
+                  <th>Cidade</th>
+                  <th>Ações</th>
+                  <!-- Button trigger modal -->
+                  <th>
+                    <button type="button" class="btn btn-primary btn-sm text-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Novo Contato
+                    </button>
+                  </th> 
+                </tr>
+            </thead>
+            <tbody id="tabela_agenda"></tbody> 
+        </table>
+            
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"     aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Novo Contato</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <button class="btn btn-success mb-2">Enviar</button>
-                    
-                </form>
-        </section>
+                    <form id="form_add" onsubmit="inserir()">
+                        <div class="modal-body">
+                            <input class="form-control form-control-lg mb-3" id="input_nome" placeholder="Nome">
+    
+                            <input class="form-control form-control-lg mb-3" id="input_telefone" type="number" placeholder="Telefone">
+
+                            <input class="form-control form-control-lg mb-3" id="input_cidade" placeholder="Cidade">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Pronto</button>
+                        </div>
+                    </form>
+                  
+                </div>
+            </div>
+        </div>
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
