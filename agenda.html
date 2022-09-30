@@ -35,17 +35,16 @@
                     <input type="date" id="d_nascimento" placeholder="Data de Nascimento" class="form-control mb-2">
 
                     <label for="nome">Região:</label>
-                    <select id="" class="mb-2"><option value="">--Selecione--</option></select>
+                    <select onchange="buscarEstado()" id="region" class="mb-2"><option value="">--Selecione--</option></select>
                 
                     <label for="nome">Estado:</label>
-                    <select id="" class="mb-2"><option value="">--Selecione--</option></select>
+                    <select onchange="buscarCidade()" id="states" class="mb-2"><option value="">--Selecione--</option></select>
 
                     <label for="nome">Cidade:</label>
-                    <!-- <input type="text" id="cidade" placeholder="Cidade" class="form-control mb-2"> -->
-                    <select id=""class="mb-2"><option value="">--Selecione--</option></select>
+                    <select onchange="buscarEstado()" id="city"class="mb-2"><option value="">--Selecione--</option></select>
 
                     <label for="nome">Bairro:</label>
-                    <select id=""class="mb-2"><option value="">--Selecione--</option></select>
+                    <select id="district"class="mb-2"><option value="">--Selecione--</option></select>
 
 
                     <div class="mb-2">
