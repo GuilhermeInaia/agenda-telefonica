@@ -1,55 +1,107 @@
-// fetch('https://servicodados.ibge.gov.br/api/v1/localidades/regioes')
-//     .then((resposta) => resposta.json())
-//     .then((regioes) =>  {
-//         regioes.forEach((cadaRegiao) => {
-//             document.getElementById('region').innerHTML += `
-//             <option value="${cadaRegiao.id}">${cadaRegiao.nome}</option>
-//             `;        
-//         });
-//     }) 
+const API_URL = 'http://localhost:8003';
 
-//     function buscarEstado(){
-//         let id_estado = document.getElementById('region').value
-//         fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/regioes/${id_estado}/estados`)
-//         .then((resposta) => resposta.json())
-//         .then((estado) => {
-//                 document.getElementById('states').innerHTML = " "
-//                 estado.forEach((cadaEstado) => {
-//                     document.getElementById('states').innerHTML += `
-//                     <option value="${cadaEstado.id}">${cadaEstado.nome}</option>
-//                     `;
+function buscarParaEditar(id) {
+    input_editar_id.value = id;
+    fetch(API_URL+'/agenda/'+id)
+    .then(res => res.json())
+    .then(dados =>{
+        input_editar_nome.value = dados.nome;
+        input_editar_telefone.value = dados.telefone;
+        input_editar_cidade = dados.cidade;
+    });
+}
 
-//              });
-        
-//         });
-//     }
+function atualizarLista() {
+    tabela_agenda.innerHTML = '';
 
-    function buscarCidade(){
-        let id_cidade = document.getElementById('states').value
-        fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/microrregioes`)
-        .then((resposta) => resposta.json())
-        .then((cidade) => {
-                document.getElementById('city').innerHTML = " "
-                cidade.forEach((cadaCidade) => {
-                    document.getElementById('city').innerHTML += `
-                    <option value="${cadaCidade.id}">${cadaCidade.nome}</option>
-                    `;
+    fetch(API_URL+'/agenda')
+    .then(function (criar){
+        return criar.json();
+    })
+    .then(function (list){
+        tabela_agenda.innerHTML = ""
+        list.forEach(function (cadaContato) {
+            tabela_agenda.innerHTML +=`
+            <tr>
+                <td>${cadaContato.id}</td>
+                <td>${cadaContato.nome}</td>
+                <td>${cadaContato.telefone}</td>
+                <td>${cadaContato.cidade}</td>
+                <td> 
+                    <button onclick="buscarParaEditar(${cadaContato.id})"data-bs-toggle="offcanvas" data-bs-target="#offcanvasEditar" class="btn btn-warning">
+                    Editar
+                    </button>
 
-             });
-        
-        });
+                    <button onclick= "excluir(${cadaContato.id})" class="btn btn-danger">
+                        Excluir
+                    </button>
+                </td>
+            </tr>
+        `});
+
+    });
+}   
+
+async function excluir (id) {
+    let res = confirm('Você deseja excluir?');
+    if ( res != true){
+        return;
+    }
+    await fetch(API_URL+'/agenda', {
+        method: 'DELETE'
+    });
+    
+    atualizarLista();
+}
+
+atualizarLista()
+
+function editar(){
+    event.preventDefault();
+
+    let dados = {
+       nome: input_editar_nome,
+       telefone: input_editar_telefone,
+       cidade: input_editar_cidade,
+    };
+    fetch(API_URL+'/agenda'+ input_editar_id.value, {
+    method: 'PATCH',
+    body: JSON.stringify(dados),
+    headers: {
+        'Content--Type' : 'application/json'
+    }
+    })
+    .then(res => res.json())
+    .then(() => atualizarLista());
+
+    let x = document.querySelector('[data-bs-dismiss="offcanvas"]');
+
+    x.dispatchEvent(new Event('click'));
+    
+}
+ 
+function incluir() {
+
+    event.preventDefault();
+
+    let dados = {
+        nome: input_nome.value,
+        telefone: input_telefone.value,
+        cidade: parseInt(input_cidade.value),
     }
 
-    // function buscarBairro() {
-    //     let id_bairro = document.getElementById('city').value 
-    //     fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/microrregioes/${id_bairro}/subdistritos`) 
-    //     .then((resposta) => resposta.json())
-    //     .then((bairro) => {
-    //         document.getElementById('district').innerHTML = " "
-    //         bairro.forEach((cadaBairro) => {
-    //             document.getElementById('district').innerHTML += `
-    //             <option value="${cadaBairro.id}">${cadaBairro.nome}</option>
-    //             `;
-    //         });
-    //     });
-    // }
+    fetch(API_URL+'/agenda',{
+        method: 'POST',
+        body: JSON.stringify(dados),
+        headers: {
+        'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(res => atualizarLista());
+
+    let y = document.querySelector('[data-bs-dismiss="modal"]');
+    y.dispatchEvent(new Event('click'));
+
+    form_add.rest();
+}

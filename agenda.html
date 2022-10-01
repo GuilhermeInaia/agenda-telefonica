@@ -44,7 +44,7 @@
             <tbody id="tabela_agenda"></tbody> 
         </table>
             
-        <!-- Modal -->
+         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"     aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -53,11 +53,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <form id="form_add" onsubmit="inserir()">
+                    <form id="form_add" onsubmit="incluir()">
                         <div class="modal-body">
                             <input class="form-control form-control-lg mb-3" id="input_nome" placeholder="Nome">
     
-                            <input class="form-control form-control-lg mb-3" id="input_telefone" type="number" placeholder="Telefone">
+                            <input class="form-control form-control-lg mb-3" id="input_telefone" placeholder="Telefone">
 
                             <input class="form-control form-control-lg mb-3" id="input_cidade" placeholder="Cidade">
 
@@ -71,7 +71,34 @@
                 </div>
             </div>
         </div>
+
+       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditar" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Items</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <form id="form_editar" onsubmit="editar()">
+                    <!-- Este hidden é para criar o id oculto -->
+                    <input type="hidden" id="input_editar_id">
+    
+                    <label for="input_editar_nome">Nome Competo</label>
+                    <input type="text" id="input_editar_nome" class="form-control mb-3">
+    
+                    <label for="input_editar_telefone">Telefone</label>
+                    <input type="text" id="input_editar_telefone" class="form-control mb-3">
+
+                    <label for="input_editar_cidade">Cidade</label>
+                    <input type="text" id="input_editar_cidade" class="form-control mb-3">
+    
+                    <div class="d-grid">
+                        <button class="btn btn-success">Enviar</button>
+                    </div>
+                </form>
+            </div>
     </div>
+
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
