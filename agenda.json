@@ -1,12 +1,5 @@
 {
-  "agenda": 
-  [
-    {
-      "id": 1,
-      "nome": "Daiane",
-      "telefone": "(85) 91122-3344",
-      "cidade": "Maracanáu"
-    },
+  "agenda": [
     {
       "id": 2,
       "nome": "Caiane",

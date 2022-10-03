@@ -4,7 +4,7 @@ function buscarParaEditar(id) {
     input_editar_id.value = id;
     fetch(API_URL+'/agenda/'+id)
     .then(res => res.json())
-    .then(dados =>{
+    .then(dados => {
         input_editar_nome.value = dados.nome;
         input_editar_telefone.value = dados.telefone;
         input_editar_cidade = dados.cidade;
@@ -15,12 +15,13 @@ function atualizarLista() {
     tabela_agenda.innerHTML = '';
 
     fetch(API_URL+'/agenda')
+
     .then(function (criar){
         return criar.json();
     })
-    .then(function (list){
+    .then(function (lista){
         tabela_agenda.innerHTML = ""
-        list.forEach(function (cadaContato) {
+        lista.forEach(function (cadaContato) {
             tabela_agenda.innerHTML +=`
             <tr>
                 <td>${cadaContato.id}</td>
@@ -47,7 +48,7 @@ async function excluir (id) {
     if ( res != true){
         return;
     }
-    await fetch(API_URL+'/agenda', {
+    await fetch(API_URL+'/agenda/'+id, {
         method: 'DELETE'
     });
     
@@ -103,5 +104,5 @@ function incluir() {
     let y = document.querySelector('[data-bs-dismiss="modal"]');
     y.dispatchEvent(new Event('click'));
 
-    form_add.rest();
+    // form_add.rest();
 }
