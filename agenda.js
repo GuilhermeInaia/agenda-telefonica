@@ -44,7 +44,7 @@ function atualizarLista() {
 }   
 
 async function excluir (id) {
-    let res = confirm('Você deseja excluir?');
+    let res = confirm('Você deseja excluir o cadastro ?');
     if ( res != true){
         return;
     }
@@ -65,11 +65,11 @@ function editar(){
        telefone: input_editar_telefone,
        cidade: input_editar_cidade,
     };
-    fetch(API_URL+'/agenda'+ input_editar_id.value, {
+    fetch(API_URL+'/agenda/'+dados.value, {
     method: 'PATCH',
     body: JSON.stringify(dados),
     headers: {
-        'Content--Type' : 'application/json'
+        'Content-Type' : 'application/json'
     }
     })
     .then(res => res.json())
@@ -88,14 +88,14 @@ function incluir() {
     let dados = {
         nome: input_nome.value,
         telefone: input_telefone.value,
-        cidade: parseInt(input_cidade.value),
+        cidade: input_cidade.value,
     }
 
-    fetch(API_URL+'/agenda',{
+    fetch(API_URL+'/agenda', {
         method: 'POST',
         body: JSON.stringify(dados),
         headers: {
-        'Content-Type': 'application/json'
+        'Content-Type' : 'application/json'
         }
     })
     .then(res => res.json())
@@ -104,5 +104,6 @@ function incluir() {
     let y = document.querySelector('[data-bs-dismiss="modal"]');
     y.dispatchEvent(new Event('click'));
 
-    // form_add.rest();
+    form_add.rest();
 }
+
