@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://localhost:8006';
 
 function buscarParaEditar(id) {
     input_editar_id.value = id;
