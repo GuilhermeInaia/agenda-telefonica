@@ -61,11 +61,11 @@ function editar(){
     event.preventDefault();
 
     let dados = {
-       nome: input_editar_nome,
-       telefone: input_editar_telefone,
-       cidade: input_editar_cidade,
+       nome: input_editar_nome.value,
+       telefone: input_editar_telefone.value,
+       cidade: input_editar_cidade.value,
     };
-    fetch(API_URL+'/agenda/'+dados.value, {
+    fetch(API_URL+'/agenda/'+input_editar_id.value, {
     method: 'PATCH',
     body: JSON.stringify(dados),
     headers: {
@@ -104,6 +104,6 @@ function incluir() {
     let y = document.querySelector('[data-bs-dismiss="modal"]');
     y.dispatchEvent(new Event('click'));
 
-    form_add.rest();
+    form_add.reset();
 }
 
