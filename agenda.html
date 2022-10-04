@@ -17,6 +17,24 @@
     <h1 class="text-center mt-4">Agenda Telefônica</h1>
     <hr class="mt-4">
 
+    <!-- Button trigger modal -->
+    <div class="text-end">
+        <div class="row">
+            <div class="col">
+                <input id="input_busca" onkeyup="filtrar()" type="text" class="form-control sm"
+                    placeholder="Buscar Item">
+            </div>
+
+            <div class="col text-end">
+                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Novo Contato
+                </button>
+            </div>
+        </div>
+    </div>
+
+    </div>
 
     <div class="col mt-1">
 
@@ -29,13 +47,6 @@
                     <th>Telefone</th>
                     <th>Cidade</th>
                     <th>Ações</th>
-                    <!-- Button trigger modal -->
-                    <th>
-                        <button type="button" class="btn btn-primary btn-sm text-end" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">
-                            Novo Contato
-                        </button>
-                    </th>
                 </tr>
             </thead>
             <tbody id="tabela_agenda" class="text-center"></tbody>
